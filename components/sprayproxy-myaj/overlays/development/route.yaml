@@ -1,0 +1,22 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: sprayproxy-myaj
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: sprayproxy-myaj
+    app.kubernetes.io/part-of: sprayproxy
+  name: sprayproxy-myaj
+spec:
+  port:
+    targetPort: 9443
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: sprayproxy-myaj
+    weight: 100
+status: {}

@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: sprayproxy-myaj
+spec:
+  replicas: 1
+  selector: {}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: quay.io/redhat-user-workloads-stage/pkumari-tenant/sprayproxy/sprayproxy-myaj@sha256:bf318f444a964570fba46f914c8ea746eeafc0e0e673d19a85aa0c35900a5bd0
+        name: container-image
+        resources: {}
+status: {}
