@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: sprayproxy-myaj
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: sprayproxy-myaj
+    app.kubernetes.io/part-of: sprayproxy
+  name: sprayproxy-myaj
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: sprayproxy-myaj
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: sprayproxy-myaj
+    spec:
+      containers:
+      - imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9443
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 9443
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 9443
+        resources:
+          limits:
+            cpu: "1"
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+status: {}
